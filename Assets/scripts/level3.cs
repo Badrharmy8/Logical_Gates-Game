@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class level4 : MonoBehaviour
+public class level3 : MonoBehaviour
 {
     // Input values
     private bool inputA = false;
@@ -10,8 +10,6 @@ public class level4 : MonoBehaviour
     private bool inputD = false;
     private bool inputE = false;
     private bool inputF = false;
-    private bool inputG = false;
-    private bool inputH = false;
 
     // UI References
     public Text inputAText;
@@ -20,8 +18,6 @@ public class level4 : MonoBehaviour
     public Text inputDText;
     public Text inputEText;
     public Text inputFText;
-    public Text inputGText;
-    public Text inputHText;
     public Button submitButton;
     public Button nextButton;
     public GameObject laptopRecharged;
@@ -72,36 +68,29 @@ public class level4 : MonoBehaviour
         inputF = !inputF;
         if (inputFText != null) inputFText.text = inputF ? "1" : "0";
     }
-    public void ToggleInputG()
-    {
-        inputG = !inputG;
-        if (inputGText != null) inputGText.text = inputG ? "1" : "0";
-    }
-    public void ToggleInputH()
-    {
-        inputH = !inputH;
-        if (inputHText != null) inputHText.text = inputH ? "1" : "0";
-    }
+
+    /*  void ResetCircuit()
+      {
+          if (laptopRecharged != null) laptopRecharged.SetActive(false);
+          if (laptopDead != null) laptopDead.SetActive(true);
+          if (nextButton != null) nextButton.gameObject.SetActive(false);
+      }*/
 
     void CheckCircuit()
     {
-        // Stage 1: Four parallel gates
-        bool notA = !inputA;                // NOT gate on input A
-        bool andBC = inputB && inputC;      // AND gate on inputs B & C
-        bool orDE = inputD || inputE;       // OR gate on inputs D & E
+        // Left side: XOR( OR(A,B), NOT(C) )
+        bool orAB = inputA || inputB;      // OR gate
+        bool notC = !inputC;               // NOT gate
+        bool xorLeft = orAB != notC;       // XOR gate
 
-        // XOR gate on inputs F, G, H (3-input XOR: true if odd number of true inputs)
-        bool xorFGH = inputF != inputG != inputH;
+        // Right side: XOR( OR(D,E), NOT(F) )
+        bool orDE = inputD || inputE;      // OR gate
+        bool notF = !inputF;               // NOT gate
+        bool xorRight = orDE != notF;      // XOR gate
 
-        // Stage 2: Combine pairs
-        bool andStage2 = notA && andBC;     // AND of NOT and AND outputs
-        bool orStage2 = orDE || xorFGH;     // OR of OR and XOR outputs
+        // Final: AND gate
+        bool finalOutput = xorLeft && xorRight;  // AND gate
 
-        // Stage 3: Final XOR
-        bool finalOutput = andStage2 != orStage2;  // XOR of Stage 2 outputs
-
-        // The ONE correct combination that makes finalOutput = TRUE:
-        // A=0, B=1, C=1, D=1, E=0, F=1, G=0, H=0
 
         if (finalOutput)
         {
@@ -115,9 +104,15 @@ public class level4 : MonoBehaviour
             if (laptopRecharged != null) laptopRecharged.SetActive(false);
             if (laptopDead != null) laptopDead.SetActive(true);
             if (nextButton != null) nextButton.gameObject.SetActive(false);
+
+            live hearts = FindObjectOfType<live>();
+            if (hearts != null)
+            {
+                hearts.LoseLife();
+            }
         }
 
-        Debug.Log($"Circuit: A={inputA}, B={inputB}, C={inputC}, D={inputD}, E={inputE}, F={inputF}, G={inputG}, H={inputH}, Result={finalOutput}");
+        Debug.Log($"Circuit: A={inputA}, B={inputB}, C={inputC}, D={inputD}, Result={finalOutput}");
     }
 
     void GoToNextLevel()

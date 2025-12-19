@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class level5 : MonoBehaviour
 {
@@ -57,13 +58,13 @@ public class level5 : MonoBehaviour
         bool andBC = inputB && inputC;      // AND on B & C
         bool orDE = inputD || inputE;       // OR on D & E
         bool xorFG = inputF != inputG;      // XOR on F & G
-        bool notH = !inputH;                // NOT on H
-        bool andIJ = inputI && inputJ;      // AND on I & J
+        bool notJ = !inputJ;                // NOT on J
+        bool andIH = inputI && inputH;      // AND on I & H
 
         // STAGE 2: Combine outputs from Stage 1
         bool stage2_1 = notA && andBC;      // AND: NOT(A) AND (B AND C)
         bool stage2_2 = orDE != xorFG;      // XOR: (D OR E) XOR (F XOR G)
-        bool stage2_3 = notH || andIJ;      // OR: NOT(H) OR (I AND J)
+        bool stage2_3 = notJ || andIH;      // OR: NOT(H) OR (I AND J)
 
         // STAGE 3: Final combination
         bool finalOutput = (stage2_1 != stage2_2) && stage2_3;  // XOR then AND
@@ -73,22 +74,26 @@ public class level5 : MonoBehaviour
             if (laptopRecharged != null) laptopRecharged.SetActive(true);
             if (laptopDead != null) laptopDead.SetActive(false);
             if (nextButton != null) nextButton.gameObject.SetActive(true);
-            FindObjectOfType<nextlevel>().ShowNextButton();
+            Debug.Log("Winning! Loading final scene...");
+            SceneManager.LoadScene("final");
+
         }
         else
         {
             if (laptopRecharged != null) laptopRecharged.SetActive(false);
             if (laptopDead != null) laptopDead.SetActive(true);
             if (nextButton != null) nextButton.gameObject.SetActive(false);
+             live hearts = FindObjectOfType<live>();
+                if (hearts != null)
+                {
+                    hearts.LoseLife();
+                }
         }
+           
 
         Debug.Log($"Circuit: A={inputA}, B={inputB}, C={inputC}, D={inputD}, E={inputE}, " +
                  $"F={inputF}, G={inputG}, H={inputH}, I={inputI}, J={inputJ}, Result={finalOutput}");
     }
 
-    void GoToNextLevel()
-    {
-        Debug.Log("Next Level button clicked!");
-        // SceneManager.LoadScene("NextLevel");
-    }
+    
 }
