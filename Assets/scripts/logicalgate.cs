@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class logicalgate: MonoBehaviour  // MUST have this
 {
+    public string LevelSceneName = "from 1 to 2";
     // Input values
     private bool inputA = false;
     private bool inputB = false;
@@ -49,9 +51,10 @@ public class logicalgate: MonoBehaviour  // MUST have this
 
         if (circuitOn)
         {
-            laptopRecharged.SetActive(true);
+            // laptopRecharged.SetActive(true);
+            SceneManager.LoadScene(LevelSceneName);
             laptopDead.SetActive(false);
-            nextButton.gameObject.SetActive(true);
+            // nextButton.gameObject.SetActive(true);
 
         }
 

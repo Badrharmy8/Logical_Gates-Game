@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39072e1c2fcb0864aacbbeb512f4d582
+guid: a227bad2b91011540958495e0ae5004e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -65,7 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: multiple_states_0
+      name: game over2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 626
-        height: 1280
+        height: 308
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2426bbb997135b845a417c509d6c905c
-      internalID: -580108381
+      spriteID: c55ea05b1aa96fb46bf9e8c681e02c72
+      internalID: -508819829
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      multiple_states_0: -580108381
+      game over2_0: -508819829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

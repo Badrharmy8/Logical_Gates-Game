@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class level3 : MonoBehaviour
 {
+    public string LevelSceneName = "from 3 to 4";
     // Input values
     private bool inputA = false;
     private bool inputB = false;
@@ -94,10 +96,11 @@ public class level3 : MonoBehaviour
 
         if (finalOutput)
         {
-            if (laptopRecharged != null) laptopRecharged.SetActive(true);
+            // if (laptopRecharged != null) laptopRecharged.SetActive(true);
+            SceneManager.LoadScene(LevelSceneName);
             if (laptopDead != null) laptopDead.SetActive(false);
-            if (nextButton != null) nextButton.gameObject.SetActive(true);
-            FindObjectOfType<nextlevel>().ShowNextButton();
+            // if (nextButton != null) nextButton.gameObject.SetActive(true);
+            // FindObjectOfType<nextlevel>().ShowNextButton();
         }
         else
         {
