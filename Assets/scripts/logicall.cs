@@ -102,7 +102,6 @@ public class logicall : MonoBehaviour
     void GoToNextLevel()
     {
         Debug.Log("Next Level button clicked!");
-        // Add your level switching logic here
-        // Example: SceneManager.LoadScene("Level2");
+       
     }
 }

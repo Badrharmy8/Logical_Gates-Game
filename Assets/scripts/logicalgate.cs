@@ -15,18 +15,17 @@ public class logicalgate: MonoBehaviour  // MUST have this
     public Text inputBText;
     public Button submitButton;
     public Button nextButton;
-    // public Image feedbackIcon;  // Changed to Image for UI
+    
 
     // Sprite assets
     public GameObject laptopRecharged;
     public GameObject laptopDead;
 
-    void Start()  // MonoBehaviour method - needs inheritance
+    void Start()  
     {
         submitButton.onClick.AddListener(CheckCircuit);
 
-        // Start invisible
-       // feedbackIcon.color = new Color(1, 1, 1, 0);
+      
     }
 
     public void ToggleInputA()
@@ -46,15 +45,15 @@ public class logicalgate: MonoBehaviour  // MUST have this
 
     void CheckCircuit()
     {      bool notA= !inputA ;
-        // Change this logic for your circuit
+        
         bool circuitOn = notA && inputB;
 
         if (circuitOn)
         {
-            // laptopRecharged.SetActive(true);
+            
             SceneManager.LoadScene(LevelSceneName);
-            laptopDead.SetActive(false);
-            // nextButton.gameObject.SetActive(true);
+           // laptopDead.SetActive(false);
+
 
         }
 
@@ -66,8 +65,8 @@ public class logicalgate: MonoBehaviour  // MUST have this
             {
                 hearts.LoseLife();
             }
-            laptopRecharged.SetActive(false);
-            nextButton.gameObject.SetActive(false);
+          // laptopRecharged.SetActive(false);
+           // nextButton.gameObject.SetActive(false);
 
         }
 
